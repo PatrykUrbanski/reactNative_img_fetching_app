@@ -1,11 +1,12 @@
 import React from "react"
 import {Image, Text, View} from "react-native";
+import {styles} from "../../styles/styles";
 
-export const ComicsDetails = () => {
+export const ComicsDetails = ({navigation}) => {
     return (
-        <View>
-            {/*<Image source={{uri:itemImg}} />*/}
-            <Text>eloeleo</Text>
+        <View style={styles.mainContainer}>
+            <Image source={{uri:navigation.getParam("img")}} style={styles.fullImage} />
         </View>
     )
-}
+};
+

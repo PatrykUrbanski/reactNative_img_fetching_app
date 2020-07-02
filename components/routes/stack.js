@@ -4,7 +4,7 @@ import {ComicsList} from "../comicsList/comicsList";
 import {ComicsDetails} from "../comicsDetails/comicsDetails";
 
 const Stack = createStackNavigator({
-    Home: {
+    xkcd: {
         screen: ComicsList
     },
     Details: {
@@ -12,7 +12,7 @@ const Stack = createStackNavigator({
     },
     },
     {
-    initialRouteName: "Home"
+    initialRouteName: "xkcd"
     }
 );
 

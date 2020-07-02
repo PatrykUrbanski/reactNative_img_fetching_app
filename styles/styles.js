@@ -29,15 +29,10 @@ export const styles = StyleSheet.create({
         height: 150,
         resizeMode: "contain"
     },
-    header: {
+    fullImage: {
         width: "100%",
-        height: 50,
-    },
-    headerText: {
-        width: "100%",
-        textAlign: "center",
-        fontSize: 30,
-        padding: 10,
+        height: "100%",
+        resizeMode: 'contain'
     }
 
 });

@@ -33,23 +33,14 @@ export const ComicsList = ({navigation}) => {
         }
     }, []);
 
-    const handlePress = () => {
-        navigation.navigate("Details")
-    }
-
-    const renderRow = ({item}) => {
-        return (
-            <TouchableOpacity onPress={handlePress}>
-                <ComicsCard item={item} />
-            </TouchableOpacity>
-
-        )
-    };
-
     return (
              <FlatList
                 data={comicsList}
-                renderItem={renderRow}
+                renderItem={({item}) => (
+                    <TouchableOpacity onPress={() => {navigation.navigate("Details", item)}}>
+                        <ComicsCard item={item} />
+                    </TouchableOpacity>
+                )}
                 keyExtractor={(item, index) => index.toString()}
             />
     )
