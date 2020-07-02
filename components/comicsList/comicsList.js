@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react"
-import {FlatList, Text, View, Image} from 'react-native';
-import {styles} from "../../styles/styles";
-import {elementsThatOverlapOffsets} from "react-native-web/dist/vendor/react-native/VirtualizeUtils";
+import {FlatList, TouchableOpacity } from 'react-native';
 import {ComicsCard} from "./comicsCard";
 
 
-export const ComicsList = () => {
+export const ComicsList = ({navigation}) => {
     const [comicsList, setComicsList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [fetchingError, setFetchingError] = useState(false);
@@ -35,9 +33,17 @@ export const ComicsList = () => {
         }
     }, []);
 
+    const handlePress = () => {
+        navigation.navigate("Details")
+    }
 
     const renderRow = ({item}) => {
-        return <ComicsCard item={item} />
+        return (
+            <TouchableOpacity onPress={handlePress}>
+                <ComicsCard item={item} />
+            </TouchableOpacity>
+
+        )
     };
 
     return (
