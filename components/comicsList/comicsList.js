@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react"
-import {FlatList, TouchableOpacity } from 'react-native';
+import {FlatList, TouchableOpacity, ActivityIndicator, Text} from 'react-native';
 import {ComicsCard} from "./comicsCard";
+
+
 
 
 export const ComicsList = ({navigation}) => {
@@ -23,18 +25,23 @@ export const ComicsList = ({navigation}) => {
 
     useEffect(() => {
         getData(firstCall);
+    }, []);
+
+
+    useEffect(() => {
         if (!loading) {
             let counter = 1;
             let fetchingInterval = setInterval(() => {
                 getData(`http://xkcd.com/${comicsList[0].num - counter}/info.0.json`);
                 counter++;
-                counter === 8 && clearInterval(fetchingInterval)
-            }, 300)
+                counter === 8 && clearInterval(fetchingInterval);
+            }, 400)
         }
-    }, []);
+    }, [loading]);
 
     return (
-             <FlatList
+        !fetchingError
+            ? <FlatList
                 data={comicsList}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => {navigation.navigate("Details", item)}}>
@@ -43,5 +50,6 @@ export const ComicsList = ({navigation}) => {
                 )}
                 keyExtractor={(item, index) => index.toString()}
             />
+            : <Text>Something went wrong my dear fellow comics lover.</Text>
     )
 };
