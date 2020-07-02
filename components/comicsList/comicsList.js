@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react"
 import {FlatList, Text, View, Image} from 'react-native';
 import {styles} from "../../styles/styles";
+import {elementsThatOverlapOffsets} from "react-native-web/dist/vendor/react-native/VirtualizeUtils";
+import {ComicsCard} from "./comicsCard";
 
 
 export const ComicsList = () => {
@@ -35,28 +37,14 @@ export const ComicsList = () => {
 
 
     const renderRow = ({item}) => {
-        return (
-            <View styles={{
-                width: "100%",
-                height: 400
-            }}>
-                {fetchingError
-                    ? <Text>Something went wrong my dear comics lover.</Text>
-                    : <View style={styles.row}>
-                        <Text style={styles.rowTitle}>{item.title}</Text>
-                        <Image style={styles.itemImage} source={{uri:item.img}}/>
-                    </View>
-                }
-            </View>
-        )
+        return <ComicsCard item={item} />
     };
 
     return (
-        <FlatList
-            data={comicsList}
-            renderItem={renderRow}
-            keyExtractor={(item, index) => index.toString()}
-        />
-
+             <FlatList
+                data={comicsList}
+                renderItem={renderRow}
+                keyExtractor={(item, index) => index.toString()}
+            />
     )
 };
