@@ -3,7 +3,7 @@ import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {ComicsCard} from "./comicsCard";
 import {styles} from "../../styles/styles";
 
-export const ComicsList = ({navigation}) => {
+export const ComicsList = ({ navigation }) => {
     const [comicsList, setComicsList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [fetchingError, setFetchingError] = useState(false);
