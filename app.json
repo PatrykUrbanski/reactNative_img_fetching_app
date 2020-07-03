@@ -2,6 +2,7 @@
   "expo": {
     "name": "ReactNativeTask",
     "slug": "ReactNativeTask",
+    "description": "Simple comics data fetching app, build in React Native with react-navigation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -8,6 +8,14 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+.idea
+.expo-shared
+web-build
+babel.config.js
+package.json
+package-lock.json
+app.json
+
 
 # macOS
 .DS_Store
