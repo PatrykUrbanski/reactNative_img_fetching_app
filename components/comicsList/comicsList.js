@@ -3,12 +3,13 @@ import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {ComicsCard} from "./comicsCard";
 import {styles} from "../../styles/styles";
 
-
 export const ComicsList = ({navigation}) => {
     const [comicsList, setComicsList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [fetchingError, setFetchingError] = useState(false);
     const firstCall = "http://xkcd.com/info.0.json";
+    let numberOfComicsRendered = 8;
+    const [loadMoreCounter, setLoadMoreCounter] = useState(numberOfComicsRendered + 1);
 
     const getData = async (url) => {
         fetch(url)
@@ -22,26 +23,29 @@ export const ComicsList = ({navigation}) => {
             })
     };
 
+    const handleLoadMore = () => {
+        getData(`http://xkcd.com/${comicsList[0].num - loadMoreCounter}/info.0.json`);
+        setLoadMoreCounter(loadMoreCounter + 1)
+    };
+
     useEffect(() => {
         getData(firstCall);
     }, []);
 
-
     useEffect(() => {
+        let counter = 1;
         if (!loading) {
-            let counter = 1;
             let fetchingInterval = setInterval(() => {
                 getData(`http://xkcd.com/${comicsList[0].num - counter}/info.0.json`);
                 counter++;
-                counter === 8 && clearInterval(fetchingInterval);
+                counter === numberOfComicsRendered && clearInterval(fetchingInterval);
             }, 400)
         }
     }, [loading]);
 
     return (
         !fetchingError
-            ?
-            <View style={styles.mainContainer}>
+            ? <View style={styles.mainContainer}>
                 <FlatList
                     contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
                     data={comicsList}
@@ -51,6 +55,8 @@ export const ComicsList = ({navigation}) => {
                         </TouchableOpacity>
                     )}
                     keyExtractor={(item, index) => index.toString()}
+                    onEndReached={handleLoadMore}
+                    onEndReachedThreshold={0}
                 />
             </View>
             : <Text>Something went wrong my dear fellow comics lover.</Text>
