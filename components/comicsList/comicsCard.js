@@ -3,8 +3,7 @@ import {Image, Text, View} from "react-native";
 import {styles} from "../../styles/styles";
 
 
-export const ComicsCard = ({item}) => {
-
+export const ComicsCard = ({ item }) => {
     return (
             <View style={styles.row}>
                 <Text style={styles.rowTitle}>{item.title}</Text>

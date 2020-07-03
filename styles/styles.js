@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        maxWidth: "100%",
+        width: "100%",
     },
     row: {
         width: "90%",
@@ -33,6 +33,5 @@ export const styles = StyleSheet.create({
         width: "100%",
         height: "100%",
         resizeMode: 'contain'
-    }
-
+    },
 });

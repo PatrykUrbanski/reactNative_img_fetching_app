@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react"
-import {FlatList, TouchableOpacity, ActivityIndicator, Text} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import {ComicsCard} from "./comicsCard";
-
-
+import {styles} from "../../styles/styles";
 
 
 export const ComicsList = ({navigation}) => {
@@ -41,15 +40,19 @@ export const ComicsList = ({navigation}) => {
 
     return (
         !fetchingError
-            ? <FlatList
-                data={comicsList}
-                renderItem={({item}) => (
-                    <TouchableOpacity onPress={() => {navigation.navigate("Details", item)}}>
-                        <ComicsCard item={item} />
-                    </TouchableOpacity>
-                )}
-                keyExtractor={(item, index) => index.toString()}
-            />
+            ?
+            <View style={styles.mainContainer}>
+                <FlatList
+                    contentContainerStyle={{flexGrow: 1, justifyContent: 'center'}}
+                    data={comicsList}
+                    renderItem={({item}) => (
+                        <TouchableOpacity onPress={() => {navigation.navigate("Details", item)}}>
+                            <ComicsCard item={item} />
+                        </TouchableOpacity>
+                    )}
+                    keyExtractor={(item, index) => index.toString()}
+                />
+            </View>
             : <Text>Something went wrong my dear fellow comics lover.</Text>
     )
 };
