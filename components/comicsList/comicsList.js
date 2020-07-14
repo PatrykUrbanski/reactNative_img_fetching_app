@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View, ActivityIndicator} from 'react-native';
 import {ComicsCard} from "./comicsCard";
 import {styles} from "../../styles/styles";
 
@@ -41,7 +41,7 @@ export const ComicsList = ({ navigation }) => {
                 counter === numberOfComicsRendered && clearInterval(fetchingInterval);
             }, 400)
         }
-    }, [loading]);
+    },[loading]);
 
     return (
         !fetchingError

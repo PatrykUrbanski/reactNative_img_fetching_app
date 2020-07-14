@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         padding: 10,
         borderWidth: 3,
         borderColor: "#B2C6DB",
-        borderStyle: "solid"
+        borderStyle: "solid",
     },
     rowTitle: {
         fontSize: 20,
@@ -34,4 +34,14 @@ export const styles = StyleSheet.create({
         height: "100%",
         resizeMode: 'contain'
     },
+    button: {
+        position: "absolute",
+        bottom: 0,
+        left: "10%",
+        fontSize: 50,
+        backgroundColor: "red",
+        borderRadius: 15,
+        alignItems: "center",
+        padding: 10,
+    }
 });
