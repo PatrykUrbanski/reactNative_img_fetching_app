@@ -54,7 +54,7 @@ export const ComicsList = ({ navigation }) => {
                             <ComicsCard item={item} />
                         </TouchableOpacity>
                     )}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={() => new Date().getTime().toString() + (Math.floor(Math.random() * Math.floor(new Date().getTime()))).toString()}
                     onEndReached={handleLoadMore}
                     onEndReachedThreshold={0}
                 />
